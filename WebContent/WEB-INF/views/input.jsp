@@ -25,9 +25,12 @@
 	<center>
 		<form:form action="${pageContext.request.contextPath }/emp"
 			method="post" modelAttribute="employee">
+			<form:errors path="*"></form:errors>
+			
 			<c:if test="${employee.id == null }">
 				<!-- path 属性对应表单的 name 属性 -->
 				LastName:<form:input path="lastName" />
+				<form:errors path="lastName"></form:errors>
 			</c:if>
 			<c:if test="${employee.id != null }">
 				<form:hidden path="id" />
@@ -36,6 +39,7 @@
 			<br />
 			<br />
 			Email:<form:input path="email" />
+			<form:errors path="email"></form:errors>
 			<br />
 			<br />
 			<%
@@ -65,7 +69,11 @@
 			注意: 需校验的 Bean 对象和其绑定结果对象或错误对象时成对出现的，它们之间不允许声明其他的入参
 			3). 错误消息 ? 如何显示, 如何把错误消息进行国际化
 		-->
-			<%-- BirthDate:<form:input path="birth" items="${birth }" /> --%>
+			BirthDate:<form:input path="birth" items="${birth }" />
+			<form:errors path="birth"></form:errors>
+			<br />
+			<br />
+			Salary:<form:input path="salary" items="${salary }" />
 			<br />
 			<br />
 			<input type="submit" value="提交" />

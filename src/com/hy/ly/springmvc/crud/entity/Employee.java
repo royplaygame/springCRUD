@@ -2,14 +2,35 @@ package com.hy.ly.springmvc.crud.entity;
 
 import java.util.Date;
 
+import javax.validation.constraints.Past;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
+
 public class Employee {
 
 	private Integer id;
+	@NotEmpty
 	private String lastName;
+	@Email
 	private String email;
 	private Integer gender;
 	private Department department;
+	@Past
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date birth;
+	@NumberFormat(pattern="#,###,###,###.#")
+	private float salary;
+
+	public float getSalary() {
+		return salary;
+	}
+
+	public void setSalary(float salary) {
+		this.salary = salary;
+	}
 
 	public Date getBirth() {
 		return birth;
@@ -68,10 +89,11 @@ public class Employee {
 		this.department = department;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", lastName=" + lastName + ", email=" + email + ", gender=" + gender
-				+ ", department=" + department + ", birth=" + birth + "]";
+				+ ", department=" + department + ", birth=" + birth + ", salary=" + salary + "]";
 	}
 
 	public Employee() {

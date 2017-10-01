@@ -2,8 +2,12 @@ package com.hy.ly.springmvc.crud.handlers;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +26,6 @@ public class EmployeeHandler {
 
 	@Autowired
 	private DepartmentDao departmentDao;
-	
 
 	@ModelAttribute
 	public void getEmployee(@RequestParam(value = "id", required = false) Integer id, Map<String, Object> map) {
@@ -50,9 +53,19 @@ public class EmployeeHandler {
 		employeeDao.delete(id);
 		return "redirect:/emps";
 	}
-
+	//如果格式转化出错，错误信息保存在BindingResult result中
 	@RequestMapping(value = "/emp", method = RequestMethod.POST)
-	public String save(Employee employee) {
+	public String save(@Valid Employee employee,BindingResult result,Map<String, Object> map) {
+		System.out.println("save: " + employee);
+		if(result.getErrorCount()>0){
+			System.out.println("出错了！");
+			for(FieldError error:result.getFieldErrors()){
+				System.out.println(error.getField()+"\t"+error.getDefaultMessage());
+			}
+			//若验证出错, 则转向定制的页面
+			map.put("departments", departmentDao.getDepartments());
+			return "input";
+		}
 		employeeDao.save(employee);
 		return "redirect:/emps";
 	}
@@ -69,4 +82,9 @@ public class EmployeeHandler {
 		map.put("employees", employeeDao.getEmployees());
 		return "list";
 	}
+
+	/*
+	 * @InitBinder public void initBinder(WebDataBinder binder){
+	 * binder.setDisallowedFields("lastName"); }
+	 */
 }
