@@ -77,5 +77,17 @@
 	
 	<br />
 	<br />
+	<a href="testExceptionHandlerExceptionResolver?i=10">TestExceptionHandlerExceptionResolver</a>
+	<br />
+	<br />
+	<a href="testResponseStatusExceptionResolver?i=10">TestResponseStatusExceptionResolver</a>
+	<br />
+	<br />
+	<a href="testDefaultHandlerExceptionResolver">TestDefaultHandlerExceptionResolver</a>
+	<br />
+	<br />
+	<a href="testSimpleMappingExceptionResolver?i=2">TestSimpleMappingExceptionResolver</a>
+	<br />
+	<br />
 </body>
 </html>

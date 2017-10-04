@@ -46,7 +46,7 @@
 		<bean class="com.hy.ly.springmvc.crud.interceptors.MyInterceptor"></bean>
 		<!-- 配置拦截器(不)作用的路径 -->
 		<mvc:interceptor>
-			<mvc:mapping path="/emps"/>
+			<mvc:mapping path="/emps" />
 			<bean class="com.hy.ly.springmvc.crud.interceptors.SecondInterceptor"></bean>
 		</mvc:interceptor>
 		<!-- 配置LocaleChangeInterceptor -->
@@ -61,5 +61,15 @@
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="defaultEncoding" value="UTF-8"></property>
 		<property name="maxUploadSize" value="1024000"></property>
+	</bean>
+
+	<!-- 配置使用 SimpleMappingExceptionResolver 来映射异常 -->
+	<bean
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.ArrayIndexOutOfBoundsException">error</prop>
+			</props>
+		</property>
 	</bean>
 </beans>
