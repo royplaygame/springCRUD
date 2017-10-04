@@ -62,5 +62,9 @@
 	-->	
 	<br><br>
 	<a href="i18n">I18N PAGE</a>
+	<br><br>
+	<a href="i18n?locale=zh_CN">中文</a>
+	<br><br>
+	<a href="i18n?locale=en_US">英文</a>
 </body>
 </html>
