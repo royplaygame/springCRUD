@@ -66,5 +66,16 @@
 	<a href="i18n?locale=zh_CN">中文</a>
 	<br><br>
 	<a href="i18n?locale=en_US">英文</a>
+	
+		<form action="testFileUpload" method="post" enctype="multipart/form-data">
+		File: <input type="file" name="file"/>
+		<br/><br/>
+		Desc: <input type="text" name="desc"/>
+		<br/><br/>
+		<input type="submit" value="上传"/>
+	</form>
+	
+	<br />
+	<br />
 </body>
 </html>
